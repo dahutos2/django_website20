@@ -13,4 +13,5 @@ urlpatterns = [
     path('update/<pk>', views.Update.as_view(), name="update"),
     path('delete/<pk>', views.Delete.as_view(), name="delete"),
     path('mypage/', mypage_site.urls),
+    path('showall/', views.showall, name='showall'),
 ]

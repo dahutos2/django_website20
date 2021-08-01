@@ -57,3 +57,11 @@ class ActivateView(TemplateView):
         result = activate_user(uidb64, token)
         # コンテクストのresultにTrue/Falseの結果を渡します。
         return super().get(request, result=result, **kwargs)
+
+from django.shortcuts import render
+from .models import Post
+
+def showall(request):
+    images = Post.objects.all()
+    context = {'images':images}
+    return render(request, 'admin/showall.html', context)

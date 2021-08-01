@@ -11,19 +11,6 @@ class User(AbstractUser):
     email = models.EmailField('メールアドレス', unique=True)
     class Meta:
         verbose_name = verbose_name_plural = _('アカウント')
-#    def get_first_name(self):
-#        return self.__str__()
-
-#    first_name = get_first_name
-
-#    def get_last_name(self):
-#        return self.__str__()
-
-#    last_name = get_last_name
-
-#    date_joined = str(first_name) + str(last_name)
-
-
 
 class Category(models.Model):
     name = models.CharField(
