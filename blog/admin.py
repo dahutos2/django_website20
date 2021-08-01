@@ -25,7 +25,7 @@ class PostTitleFilter(admin.SimpleListFilter):
 
 class PostInline(admin.TabularInline):
     model = models.Post
-    fields = ('title', 'body')
+    fields = ('title','image','body',)
     extra = 1
 
 @admin.register(models.Category)
@@ -44,10 +44,6 @@ class PostAdminForm(forms.ModelForm):
             'title': 'ブログタイトル',
             'namme': '名前',
         }
-    def clean(self):
-        body = self.cleaned_data.get('body')
-        if ('<' and '>' and '/') in body:
-            raise forms.ValidationError('HTMLは使えません。')
 
 @admin.register(models.Post)
 class PostAdmin(admin.ModelAdmin):
@@ -55,7 +51,7 @@ class PostAdmin(admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     fieldsets = [
         (None, {'fields': ('title', )}),
-        ('コンテンツ', {'fields': ('body', )}),
+        ('コンテンツ', {'fields': ('image', )}),
         ('分類', {'fields': ('category', 'tags')}),
         ('メタ', {'fields': ('created', 'updated')})
     ]
@@ -71,7 +67,7 @@ class PostAdmin(admin.ModelAdmin):
         #js = ('post.js',)
 
     #リスト
-    list_display = ('id','title', 'category', 'tags_summary', 'published', 'created', 'updated',)
+    list_display = ('id','title', 'category', 'image', 'body', 'tags_summary', 'created', 'updated',)
     list_select_related = ('category', )
     list_editable = ('title', 'category')
     search_fields = ('title', 'category__name', 'tags__name', 'created', 'updated',)
@@ -89,18 +85,6 @@ class PostAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         return qs.prefetch_related('tags')
-
-    actions = ["publish", "unpublish"]
-
-    def publish(self, request, queryset):
-        queryset.update(published=True)
-
-    publish.short_description = "公開する"
-
-    def unpublish(self, request, queryset):
-        queryset.update(published=False)
-
-    unpublish.short_description = "下書きに戻す"
 
 
 from django.contrib.auth.forms import AuthenticationForm

@@ -77,13 +77,20 @@ class Post(models.Model):
         null=False,
         verbose_name="タイトル",
         )
-
-    body = models.TextField(
+    body = models.CharField(
+        max_length=255,
         blank=True,
-        null=False,
-        verbose_name="本文",
-        help_text="HTMLは使えません。",
+        null=True,
+        verbose_name="備考",
         )
+
+    image = models.ImageField(
+        upload_to='images',
+        blank=True,
+        null=True,
+        verbose_name="画像",
+        )
+
 
     category = models.ForeignKey(
         Category,
@@ -97,10 +104,6 @@ class Post(models.Model):
         verbose_name="タグ",
         )
 
-    published = models.BooleanField(
-        default=True,
-        verbose_name="公開する",
-        )
 
     def __str__(self):
         return self.title
