@@ -64,8 +64,7 @@ class Post(models.Model):
         null=False,
         verbose_name="タイトル",
         )
-    body = models.CharField(
-        max_length=255,
+    body = models.TextField(
         blank=True,
         null=True,
         verbose_name="備考",
