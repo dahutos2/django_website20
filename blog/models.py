@@ -14,9 +14,10 @@ class User(AbstractUser):
 
 class Category(models.Model):
     name = models.CharField(
+    default='',
     max_length=255,
-    blank=True,
-    null=True,
+    blank=False,
+    null=False,
     unique=True)
 
     def __str__(self):
@@ -28,9 +29,10 @@ class Category(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(
+        default='',
         max_length=255,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         unique=True)
 
     def __str__(self):
