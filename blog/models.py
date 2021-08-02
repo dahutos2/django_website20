@@ -15,8 +15,8 @@ class User(AbstractUser):
 class Category(models.Model):
     name = models.CharField(
     max_length=255,
-    blank=False,
-    null=False,
+    blank=True,
+    null=True,
     unique=True)
 
     def __str__(self):
@@ -29,8 +29,8 @@ class Category(models.Model):
 class Tag(models.Model):
     name = models.CharField(
         max_length=255,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         unique=True)
 
     def __str__(self):
@@ -45,23 +45,23 @@ class Post(models.Model):
     created = models.DateTimeField(
         auto_now_add=True,
         editable=False,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         verbose_name="作成日",
         )
 
     updated = models.DateTimeField(
         auto_now=True,
         editable=False,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         verbose_name="最終更新日",
         )
 
     title = models.CharField(
         max_length=255,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         verbose_name="タイトル",
         )
     body = models.TextField(
