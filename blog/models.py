@@ -67,7 +67,7 @@ class Post(models.Model):
     body = models.TextField(
         blank=True,
         null=True,
-        verbose_name="備考",
+        verbose_name="本文",
         )
 
     image = models.ImageField(
