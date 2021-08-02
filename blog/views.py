@@ -48,6 +48,16 @@ class SignUpView(CreateView):
     form_class = SignUpForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
+    
+class ActivateView(TemplateView):
+    template_name = "registration/activate.html"
+
+    def get(self, request, uidb64, token, *args, **kwargs):
+        # 認証トークンを検証して、
+        result = activate_user(uidb64, token)
+        # コンテクストのresultにTrue/Falseの結果を渡します。
+        return super().get(request, result=result, **kwargs)
+
 
 from django.shortcuts import render
 from .models import Post
