@@ -45,23 +45,23 @@ class Post(models.Model):
     created = models.DateTimeField(
         auto_now_add=True,
         editable=False,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         verbose_name="作成日",
         )
 
     updated = models.DateTimeField(
         auto_now=True,
         editable=False,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         verbose_name="最終更新日",
         )
 
     title = models.CharField(
         max_length=255,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         verbose_name="タイトル",
         )
     body = models.TextField(
