@@ -5,5 +5,5 @@ dj-database-url
 django-anymail[mailgun]
 pillow
 python-dotenv
-psycopg2-binary　
+psycopg2-binary==2.8.6
 mysqlclient
